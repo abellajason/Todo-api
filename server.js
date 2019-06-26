@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 const PORT = process.env.PORT || 3000;
 var todos = [];
-var todoNextId = 1;
+var todoId = 1;
 
 
 app.use(bodyParser.json());
@@ -35,11 +35,11 @@ app.get('/todos/:id', (req,res) => {
 app.post('/todos' , (req,res) => {
     var body = req.body;
 
-    body.id = todoNextId++;
+    body.id = todoId++;
 
     todos.push(body);
 
-    todoNextId+=1;
+    todoId+=1;
 
     res.json(postedTodo);
 });
