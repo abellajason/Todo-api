@@ -46,6 +46,24 @@ app.post('/todos' , (req,res) => {
 });
 
 
+app.delete('/todos/:id' , (req,res) => {
+    var todoid = parseInt(req.params.id,10);
+    var matchedTodo = _.findWhere(todos, {id:todoid});
+    console.log(todoid,matchedTodo, todos);
+
+    if(matchedTodo) {
+        // todos = todos.filter(id => id !== matchedTodo);
+        // res.json(matchedTodo);
+        todos = _.without(todos, matchedTodo);
+        res.json(matchedTodo);
+    }
+    else {
+        res.status(404).json({"error" : "no todo found with that id"});
+    }
+
+});
+
+
 app.listen(PORT, () => {
     console.log('App started on ' + PORT);
 })
