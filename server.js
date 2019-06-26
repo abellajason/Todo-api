@@ -39,7 +39,7 @@ app.post('/todos' , (req,res) => {
 
     todos.push(body);
 
-    res.json(postedTodo);
+    res.json(body);
 });
 
 
