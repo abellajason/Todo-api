@@ -1,9 +1,9 @@
 var Sequelize = require('sequelize');
 
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.DATABASE_URL || 'dev-todo-api';
 var sequelize;
 
-if(env === 'production') {
+if(!process.env.DATABASE_URL) {
     sequelize = new Sequelize("postgres://postgres:postgres@localhost/urxfqucqjebtsz", {
         'dialect' : 'postgres'
     })
