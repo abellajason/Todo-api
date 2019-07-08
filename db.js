@@ -1,22 +1,20 @@
 var Sequelize = require('sequelize');
 
-var env = process.env.DATABASE_URL || 'dev-todo-api';
+var env = process.env.DATABASE_URL || 'campeonatodb';
 var sequelize;
 
-if(!process.env.DATABASE_URL) {
+if(!env) {
     sequelize = new Sequelize("postgres://postgres:postgres@localhost/urxfqucqjebtsz", {
         'dialect' : 'postgres'
     })
 } else {
-    sequelize = new Sequelize(undefined, undefined, undefined, {
+    sequelize = new Sequelize(undefined,undefined,undefined, {
         'dialect' : 'sqlite', 
         'storage' : __dirname + '/data/dev-todo-api.sqlite'
     })
 }
 
-var db = {
-
-};
+var db = {};
 
 db.Todo = sequelize.import(__dirname+'/models/todo.js');
 db.sequelize = sequelize;
