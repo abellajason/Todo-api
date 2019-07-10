@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 var env = process.env.DATABASE_URL || 'campeonatodb';
 var sequelize;
 
-console.log(process.env.DATABASE_URL);
+console.log(process.env.DATABASE_URL , env);
 
 if(!env) {
     sequelize = new Sequelize("postgres://postgres:postgres@localhost/urxfqucqjebtsz", {
