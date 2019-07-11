@@ -20,6 +20,7 @@ if(!env) {
 var db = {};
 
 db.Todo = sequelize.import(__dirname+'/models/todo.js');
+db.User = sequelize.import(__dirname+'/models/user.js');
 db.sequelize = sequelize;
 db.Sequelize = Sequelize; 
 module.exports = db;

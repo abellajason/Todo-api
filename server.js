@@ -166,12 +166,23 @@ app.put('/todos/:id', (req,res) => {
         res.status(500).json('something wrong happened');
     });
 
-})
+});
+
+
+
+app.post('/users' , (req,res) => {
+    var body = _.pick(req.body, 'email' , 'password');
+
+    db.User.create(body).then((user) => {
+        res.json(user.toJSON());
+    }, (e) => {
+        res.status(400).json(e);
+    });
+});
 
 db.sequelize.sync().then(()=> {
     app.listen(PORT, () => {
         console.log('App started on ' + PORT);
     })
 })
-
 
