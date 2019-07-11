@@ -154,16 +154,16 @@ app.put('/todos/:id', (req,res) => {
 
     db.Todo.findById(todoid).then((todo) => {
         if(todo) {
-            return todo.update(attributes)
+            todo.update(attributes).then((todo) => {
+                res.json(todo.toJSON());
+            }, (e) => {
+                res.status(400).json(e);
+            });
         } else {
             res.status(404).json("Error : no todo with that id");
         }
     },() => {
         res.status(500).json('something wrong happened');
-    }).then((todo) => {
-        res.json(todo.toJSON());
-    }, (e) => {
-        res.status(400).json(e);
     });
 
 })
